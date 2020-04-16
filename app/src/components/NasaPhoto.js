@@ -3,14 +3,19 @@ import { connect } from 'react-redux';
 
 import { getNasaPhoto } from '../actions/actions';
 
-function NasaPhoto(props) {
+function NasaPhoto({ photo, getNasaPhoto }) {
   useEffect(() => {
-    props.getNasaPhoto();
+    getNasaPhoto();
   }, []);
-  const photo = props.photo;
   console.log('photo state in the component: ', photo);
   return (
-    <div>Hello from photo component</div>
+    <div className='nasa-photo-container'>
+      <h2>NASA Photo of the Day </h2>
+      <h2>{photo.title}</h2>
+      <img src={photo.url}/>
+      <p>{photo.date}</p>
+      <p>{photo.explanation}</p>
+    </div>
   );
 }
 

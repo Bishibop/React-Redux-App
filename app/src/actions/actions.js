@@ -12,12 +12,11 @@ export const FETCH_NASA_PHOTO_SUCCESS = 'FETCH_NASA_PHOTO_SUCCESS';
 export const FETCH_NASA_PHOTO_FAIL = 'FETCH_NASA_PHOTO_FAIL';
 
 export const getNasaPhoto = () => dispatch => {
-  console.log('are we making a call?');
   dispatch({ type: FETCH_NASA_PHOTO_START });
   axios
     .get(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${formattedDate()}`)
+    // .get(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=2020-4-14`)
     .then(res => {
-      console.log('what were getting from nasa:', res);
       return dispatch({ type: FETCH_NASA_PHOTO_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: FETCH_NASA_PHOTO_FAIL, payload: err}));
